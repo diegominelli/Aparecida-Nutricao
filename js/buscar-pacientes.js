@@ -8,7 +8,13 @@ botaoAdicionar.addEventListener('click', function () {
 
   // Retornando os dados da API
   xhr.addEventListener('load', function () {
-    console.log(xhr.responseText);
+    var resposta = xhr.responseText;
+    // Transformando de string para object
+    var pacientes = JSON.parse(resposta);
+    // Recebendo o retorno dos pacientes na tabela
+    pacientes.forEach(function (paciente) {
+      adicionaPacienteNaTabela(paciente);
+    });
   });
 
   xhr.send();
